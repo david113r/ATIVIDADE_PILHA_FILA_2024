@@ -1,17 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct No {
+struct No
+{
 
     int valor;
     No* prox;
 
-    No() {
+    No()
+    {
         valor = 0;
         prox = NULL;
     }
 
-    No(int _valor) {
+    No(int _valor)
+    {
         valor = _valor;
         prox = NULL;
     }
@@ -19,33 +22,41 @@ struct No {
 
 };
 
-struct Fila {
+struct Fila
+{
 
     No* inicio;
     No* fim;
     int n;
 
-    Fila() {
+    Fila()
+    {
         inicio = NULL;
         fim = NULL;
         n = 0;
     }
 
-    void enfileirar(int valor) {
+    void enfileirar(int valor)
+    {
         No* novo = new No(valor);
-        if (inicio == NULL) {
+        if (inicio == NULL)
+        {
             inicio = novo;
             fim = novo;
-        } else {
+        }
+        else
+        {
             fim->prox = novo;
             fim = novo;
         }
         n++;
     }
 
-    void desenfileirar(){
+    void desenfileirar()
+    {
         if (n == 0) return;
-        if (n == 1) {
+        if (n == 1)
+        {
             delete(inicio);
             inicio = NULL;
             fim = NULL;
@@ -58,51 +69,62 @@ struct Fila {
         n--;
     }
 
-    int frente() {
+    int frente()
+    {
         if (inicio == NULL) return 0;
         return inicio->valor;
     }
 
-void imprimirFila(){
+    void imprimirFila()
+    {
 
- No* aux=inicio;
-printf("\nFila:");
- while(aux!=NULL){
-    printf("%d->",aux->valor);
+        No* aux=inicio;
+        printf("\nFila:");
+        while(aux!=NULL)
+        {
+            printf("%d->",aux->valor);
 
-    aux=aux->prox;
+            aux=aux->prox;
 
 
- }
-}
+        }
+    }
 
 
 };
 
-struct Pilha {
+struct Pilha
+{
 
     No* topo;
     int n;
 
-    Pilha() {
+    Pilha()
+    {
         topo = NULL;
         n = 0;
     }
 
-    void inserir(int valor) {
+    void inserir(int valor)
+    {
         No* novo = new No(valor);
-        if (topo == NULL) {
+        if (topo == NULL)
+        {
             topo = novo;
-        } else {
+        }
+        else
+        {
             novo->prox = topo;
             topo = novo;
         }
         n++;
     }
 
-    void remover() {
+    void remover()
+    {
         if (n == 0) return;
-        if (n == 1) {
+        if (n == 1)
+        {
             delete(topo);
             topo = NULL;
             n = 0;
@@ -114,45 +136,49 @@ struct Pilha {
         n--;
     }
 
-    int topoPilha() {
+    int topoPilha()
+    {
         if (topo == NULL) return 0;
         return topo->valor;
     }
-    void imprimirPilha(){
- Pilha p;
- No* aux=topo;
-printf("\nPILHA:");
- while(aux!=NULL){
-    printf("%d-> ",aux->valor);
+    void imprimirPilha()
+    {
+        Pilha p;
+        No* aux=topo;
+        printf("\nPILHA:");
+        while(aux!=NULL)
+        {
+            printf("%d-> ",aux->valor);
 
-    aux=aux->prox;
+            aux=aux->prox;
 
 
- }
+        }
     }
 
 };
 
- /*void imprimir(){
- Pilha p;
- No* aux=p->topo;
+/*void imprimir(){
+Pilha p;
+No* aux=p->topo;
 
- while(aux!=NULL){
-    printf("%d->",aux->valor);
+while(aux!=NULL){
+   printf("%d->",aux->valor);
 
-    aux=aux->prox;
-
-
- }
+   aux=aux->prox;
 
 
-
-
- }*/
+}
 
 
 
-int main() {
+
+}*/
+
+
+
+int main()
+{
 
     Fila f;
     Pilha p;
@@ -164,7 +190,8 @@ int main() {
     f.enfileirar(12);
 
 
-    while(f.n>0){
+    while(f.n>0)
+    {
 
         p.inserir(f.frente());
         f.desenfileirar();
@@ -173,14 +200,16 @@ int main() {
 
 
 
-    while(p.n>0){
+    while(p.n>0)
+    {
         f.enfileirar(p.topoPilha());
         p.remover();
     }
 
 
     printf("FILA:\n");
-    while (f.n > 0) {
+    while (f.n > 0)
+    {
         printf("%d\n", f.frente());
         f.desenfileirar();
     }
